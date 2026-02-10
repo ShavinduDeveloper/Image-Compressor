@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Compressor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Image Compressor</h1>
+        <button id="themeToggle">🌙</button>
+    </header>
+    <p class="subtitle">Compress multiple images & download instantly</p>
+
+    <!-- Upload -->
+    <div class="upload-box" id="dropZone">
+        <p>Drag & Drop Images Here</p>
+        <span>or click to browse</span>
+        <input type="file" id="upload" multiple accept="image/*" hidden>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <label>Quality: <strong><span id="qualityValue">70</span>%</strong></label>
+        <input type="range" id="quality" min="10" max="100" value="70">
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+        <button id="compressBtn">Compress & Download</button>
+        <button id="cancelBtn" class="danger hidden">Cancel</button>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="progress-wrapper hidden" id="progressWrapper">
+        <div class="progress-text" id="progressText">0%</div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <!-- Preview -->
+    <div id="preview"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

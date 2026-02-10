@@ -1,0 +1,148 @@
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --primary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --border: #e5e7eb;
+}
+
+body.dark {
+    --bg: #020617;
+    --card: #020617;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: #1e293b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 25px;
+    background: var(--card);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* Upload */
+.upload-box {
+    margin-top: 25px;
+    padding: 45px;
+    border: 2px dashed var(--primary);
+    border-radius: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.upload-box:hover { background: rgba(37,99,235,0.05); }
+
+/* Controls */
+.controls { margin: 25px 0; }
+
+/* Buttons */
+button {
+    padding: 14px 30px;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+#compressBtn {
+    background: var(--primary);
+    color: white;
+}
+
+#compressBtn:hover {
+    box-shadow: 0 10px 20px rgba(37,99,235,0.3);
+}
+
+.danger {
+    background: var(--danger);
+    color: white;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Progress */
+.progress-wrapper {
+    margin-top: 20px;
+}
+
+.progress-bar {
+    height: 16px;
+    background: var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--primary), #60a5fa);
+    transition: width 0.3s;
+}
+
+.progress-text {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Preview */
+#preview {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.preview-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 10px;
+    border: 1px solid var(--border);
+}
+
+.preview-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.status {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 6px;
+}
+
+.pending { color: var(--muted); }
+.working { color: var(--primary); }
+.done { color: var(--success); }
+
+.hidden { display: none; }
