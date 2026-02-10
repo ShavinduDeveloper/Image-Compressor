@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Image Compressor</title>
+    <title>Bulk Image Compressor</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,10 +12,11 @@
 
 <div class="container">
     <header>
-        <h1>Image Compressor</h1>
-        <button id="themeToggle">🌙</button>
+        <h1>Bulk Image Compressor</h1>
+        <button id="themeToggle" title="Toggle dark mode">🌙</button>
     </header>
-    <p class="subtitle">Compress multiple images & download instantly</p>
+
+    <p class="subtitle">Compress images, download one-by-one or all together</p>
 
     <!-- Upload -->
     <div class="upload-box" id="dropZone">
@@ -26,13 +27,15 @@
 
     <!-- Controls -->
     <div class="controls">
-        <label>Quality: <strong><span id="qualityValue">70</span>%</strong></label>
+        <label>Quality:
+            <strong><span id="qualityValue">70</span>%</strong>
+        </label>
         <input type="range" id="quality" min="10" max="100" value="70">
     </div>
 
     <!-- Actions -->
     <div class="actions">
-        <button id="compressBtn">Compress & Download</button>
+        <button id="compressBtn">Compress & Download ZIP</button>
         <button id="cancelBtn" class="danger hidden">Cancel</button>
     </div>
 

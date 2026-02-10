@@ -14,7 +14,7 @@ const progressText = document.getElementById("progressText");
 let images = [];
 let cancelProcess = false;
 
-/* Dark Mode */
+/* Dark mode */
 themeToggle.onclick = () => {
     document.body.classList.toggle("dark");
 };
@@ -38,6 +38,7 @@ upload.addEventListener("change", e => {
             <img src="${URL.createObjectURL(file)}">
             <p>${(file.size / 1024).toFixed(1)} KB</p>
             <div class="status pending" id="status-${index}">Pending</div>
+            <button class="download-btn" id="download-${index}">Download</button>
         `;
         preview.appendChild(card);
     });
@@ -48,7 +49,7 @@ cancelBtn.onclick = () => {
     cancelProcess = true;
 };
 
-/* Compress */
+/* Compress All */
 compressBtn.onclick = async () => {
     if (!images.length) return alert("Upload images first");
 
@@ -63,14 +64,29 @@ compressBtn.onclick = async () => {
     for (let i = 0; i < images.length; i++) {
         if (cancelProcess) break;
 
-        document.getElementById(`status-${i}`).textContent = "Compressing...";
-        document.getElementById(`status-${i}`).className = "status working";
+        const status = document.getElementById(`status-${i}`);
+        const downloadBtn = document.getElementById(`download-${i}`);
+
+        status.textContent = "Compressing...";
+        status.className = "status working";
 
         const blob = await compressImage(images[i], quality);
+
+        /* ZIP */
         zip.file(`compressed_${images[i].name}`, blob);
 
-        document.getElementById(`status-${i}`).textContent = "Done";
-        document.getElementById(`status-${i}`).className = "status done";
+        /* Per-image download */
+        const url = URL.createObjectURL(blob);
+        downloadBtn.style.display = "block";
+        downloadBtn.onclick = () => {
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `compressed_${images[i].name}`;
+            a.click();
+        };
+
+        status.textContent = "Done";
+        status.className = "status done";
 
         const percent = Math.round(((i + 1) / images.length) * 100);
         progressFill.style.width = percent + "%";
@@ -78,9 +94,9 @@ compressBtn.onclick = async () => {
     }
 
     if (!cancelProcess) {
-        const content = await zip.generateAsync({ type: "blob" });
+        const zipBlob = await zip.generateAsync({ type: "blob" });
         const a = document.createElement("a");
-        a.href = URL.createObjectURL(content);
+        a.href = URL.createObjectURL(zipBlob);
         a.download = "compressed_images.zip";
         a.click();
     }
@@ -90,7 +106,7 @@ compressBtn.onclick = async () => {
     progressWrapper.classList.add("hidden");
 };
 
-/* Compression */
+/* Compression function */
 function compressImage(file, quality) {
     return new Promise(resolve => {
         const img = new Image();

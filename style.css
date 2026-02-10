@@ -27,7 +27,7 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 40px auto;
     padding: 25px;
     background: var(--card);
@@ -56,19 +56,22 @@ header {
     cursor: pointer;
 }
 
-.upload-box:hover { background: rgba(37,99,235,0.05); }
+.upload-box:hover {
+    background: rgba(37,99,235,0.05);
+}
 
 /* Controls */
-.controls { margin: 25px 0; }
+.controls {
+    margin: 25px 0;
+}
 
 /* Buttons */
 button {
-    padding: 14px 30px;
+    padding: 14px 28px;
     border-radius: 14px;
     border: none;
     cursor: pointer;
     font-size: 15px;
-    transition: 0.3s;
 }
 
 #compressBtn {
@@ -96,6 +99,11 @@ button {
     margin-top: 20px;
 }
 
+.progress-text {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
 .progress-bar {
     height: 16px;
     background: var(--border);
@@ -110,39 +118,51 @@ button {
     transition: width 0.3s;
 }
 
-.progress-text {
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
 /* Preview */
 #preview {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
     gap: 15px;
 }
 
 .preview-card {
     background: var(--card);
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 10px;
     border: 1px solid var(--border);
 }
 
 .preview-card img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
+}
+
+.preview-card p {
+    font-size: 13px;
+    margin: 5px 0;
 }
 
 .status {
     font-size: 12px;
     font-weight: 600;
-    margin-top: 6px;
 }
 
 .pending { color: var(--muted); }
 .working { color: var(--primary); }
 .done { color: var(--success); }
 
-.hidden { display: none; }
+.download-btn {
+    margin-top: 6px;
+    width: 100%;
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 10px;
+    background: var(--success);
+    color: white;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
